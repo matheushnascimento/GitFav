@@ -1,13 +1,20 @@
+import { GithubUser } from "./GithubUser.js";
 export class Favorites {
   constructor(root) {
     this.root = document.querySelector(root);
+    this.load();
   }
 
-  load() {}
+  load() {
+    this.entries = JSON.parse(localStorage.getItem("@github-favorites:")) || [];
+  }
 
   save() {}
 
-  add() {}
+  async add(username) {
+    const x = await GithubUser.search(username);
+    console.log(x);
+  }
 
   delete() {}
 }
@@ -27,7 +34,13 @@ export class FavoritesView extends Favorites {
   oandd() {
     const favoriteButton = this.root.querySelector("button");
 
-    favoriteButton.onclick = () => {};
+    favoriteButton.onclick = () => {
+      const input = document.querySelector("input");
+      const { value } = input;
+
+      this.add(value);
+      input.value = "";
+    };
   }
 
   update() {
