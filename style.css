@@ -6,3 +6,20 @@
   box-sizing: border-box;
 }
 
+:root {
+  font-size: 62.5%;
+
+  --cl-black: #000;
+
+  --fn-white: #fff;
+
+  --fn-default: 'Roboto', sans-serif;
+  --fn-destaque: 'Roboto Mono', sans-serif;
+}
+
+body {
+  background: var(--cl-black);
+
+  font-family: var(--fn-destaque);
+  color: var(--fn-white);
+}
