@@ -12,6 +12,8 @@
   --cl-black: #000;
 
   --fn-white: #fff;
+  --secondary-white: #E1E1E6;
+  --table-destaque: #092D38;
 
   --fn-default: 'Roboto', sans-serif;
   --fn-destaque: 'Roboto Mono', sans-serif;
@@ -31,6 +33,10 @@ body {
 
   font-family: var(--fn-default);
   color: var(--fn-white);
+}
+
+.hide {
+  display: none;
 }
 
 #app {
@@ -113,4 +119,79 @@ header h1 {
   font-style: normal;
   text-align: center;
   text-transform: uppercase;
+}
+
+.round-border {
+  border: 1px solid var(--table-destaque);
+  border-radius: 1.2rem;
+
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border-radius: 1.2rem;
+}
+
+table tbody * {
+  color: var(--fn-white);
+
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 160%;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background: #06181C;
+}
+
+table th {
+  background: var(--table-destaque);
+
+  color: var(--secondary-white);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 160%;
+  font-style: normal;
+
+}
+
+table th:first-child {
+  border-top-left-radius: 1.2rem;
+}
+
+table th:last-child {
+  border-top-right-radius: 1.2rem;
+}
+
+td.user {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  padding: 2.4rem 2.4rem 2.4rem 4rem;
+}
+
+td.user img {
+  height: 5.6rem;
+  width: 5.6rem;
+
+  border-radius: 50%;
+}
+
+td.user a {
+  text-decoration: none;
+}
+
+td.user p {
+  font-weight: 400;
+  text-align: left;
+}
+
+td.action {
+  color: red;
 }
