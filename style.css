@@ -116,6 +116,11 @@ header h1 {
   cursor: pointer;
 }
 
+.input-wrapper button:hover {
+  background: #fff;
+  color: #065E7C;
+}
+
 .container {
   border: 1px solid var(--table-destaque);
   border-radius: 1.2rem;
@@ -168,6 +173,7 @@ table {
 thead {
   position: sticky;
   top: 0;
+
 }
 
 table tbody * {
