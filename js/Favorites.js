@@ -15,9 +15,9 @@ export class Favorites {
 
   async add(username) {
     try {
-      const userEsists = this.entries.find(entry => entry.login === username);
+      const userExists = this.entries.find(entry => entry.login === username);
 
-      if (userEsists) throw new Error("Usuário já cadastrado");
+      if (userExists) throw new Error("Usuário já cadastrado");
 
       const user = await GithubUser.search(username);
 
@@ -46,14 +46,15 @@ export class FavoritesView extends Favorites {
     super(root);
 
     this.tbody = this.root.querySelector("table tbody");
+    this.container = this.root.querySelector(".container");
     this.star = document.querySelector("svg");
 
     this.update();
-    this.oandd();
+    this.onAdd();
     this.buttonChange();
   }
 
-  oandd() {
+  onAdd() {
     const favoriteButton = this.root.querySelector("button");
 
     favoriteButton.onclick = () => {
@@ -66,7 +67,7 @@ export class FavoritesView extends Favorites {
   }
 
   update() {
-    this.removeAllTr();
+    this.removeAllElements();
 
     this.entries.forEach(user => {
       const row = this.createRow();
@@ -89,6 +90,26 @@ export class FavoritesView extends Favorites {
 
       this.tbody.append(row);
     });
+
+    if (this.entries.length <= 0) {
+      this.container.append(this.createEmptyMessage());
+    }
+
+    console.log(this.entries.length);
+  }
+
+  createEmptyMessage() {
+    if (this.entries.length === 0) {
+      const div = document.createElement("div");
+      div.classList.add("empty-table");
+
+      div.innerHTML = `
+          <img src="assets/table-star.svg" alt="estrela com rosto" />
+          <p>Nenhum favorito ainda</p>
+      `;
+
+      return div;
+    }
   }
 
   createRow() {
@@ -117,10 +138,14 @@ export class FavoritesView extends Favorites {
     return tr;
   }
 
-  removeAllTr() {
+  removeAllElements() {
     this.tbody.querySelectorAll("tr").forEach(tr => {
       tr.remove();
     });
+
+    const emptyTableDiv = this.container.querySelector(".empty-table");
+
+    emptyTableDiv && emptyTableDiv.remove();
   }
 
   buttonChange() {

@@ -153,11 +153,13 @@ table {
 }
 
 .empty-table {
-  min-height: 30vw;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.6rem;
+
+  margin: 2rem;
+
   text-align: center;
 }
 
